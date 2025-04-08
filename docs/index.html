@@ -1,1 +1,627 @@
-index.html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>recounter - 打字记录工具</title>
+    <!-- 添加 EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // 初始化 EmailJS
+            emailjs.init("YOUR_PUBLIC_KEY"); // 请替换为你的 EmailJS 公钥
+        })();
+    </script>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #e8f4fc;
+            --text-color: #333;
+            --light-text: #666;
+            --background: #f9f9f9;
+            --card-bg: #fff;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background);
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1rem;
+        }
+
+        .nav-tab {
+            padding: 0.8rem 1.5rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .nav-tab:hover:not(.active) {
+            background-color: var(--secondary-color);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .feature-icon {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-tab {
+                margin-bottom: 0.5rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .feature {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .feature-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-icon">⌨️</div>
+            <div class="logo">recounter</div>
+            <div class="tagline">简单高效的打字记录工具</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="openTab('intro')">产品介绍</div>
+            <div class="nav-tab" onclick="openTab('privacy')">隐私政策</div>
+            <div class="nav-tab" onclick="openTab('terms')">使用条款</div>
+            <div class="nav-tab" onclick="openTab('contact')">联系我们</div>
+        </div>
+
+        <div id="intro" class="tab-content active">
+            <div class="card">
+                <h1>欢迎使用 recounter</h1>
+                <p>recounter 是一款专为 macOS 设计的打字记录工具，它能够帮助您追踪和记录日常打字内容，提高工作效率，避免内容丢失。</p>
+
+                <h2>主要功能</h2>
+
+                <div class="feature">
+                    <div class="feature-icon">📝</div>
+                    <div class="feature-content">
+                        <div class="feature-title">实时记录</div>
+                        <p>自动捕捉您在各个应用中的打字内容，实时保存，永不丢失。</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-content">
+                        <div class="feature-title">快速搜索</div>
+                        <p>强大的搜索功能，轻松找回曾经输入过的内容。</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-content">
+                        <div class="feature-title">主题定制</div>
+                        <p>多种颜色主题可选，打造属于您的个性化界面。</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-content">
+                        <div class="feature-title">数据导出</div>
+                        <p>支持导出记录数据，方便备份和分析。</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-content">
+                        <div class="feature-title">安全可靠</div>
+                        <p>所有数据存储在本地，保护您的隐私安全。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="privacy" class="tab-content">
+            <div class="card">
+                <h1>隐私政策</h1>
+                <p>最后更新日期：2025年4月6日</p>
+
+                <p>我们非常重视您的隐私。本隐私政策旨在说明 recounter 如何收集、使用和保护您的个人信息。</p>
+
+                <h2>信息收集</h2>
+                <p>recounter 是一款本地应用程序，主要功能是记录您的打字内容。我们收集的信息包括：</p>
+                <ul>
+                    <li>您在各个应用程序中输入的文本内容</li>
+                    <li>应用程序名称</li>
+                    <li>输入时间戳</li>
+                </ul>
+
+                <h2>信息使用</h2>
+                <p>我们收集的信息仅用于：</p>
+                <ul>
+                    <li>提供打字记录功能</li>
+                    <li>改进产品体验</li>
+                    <li>根据您的要求提供技术支持</li>
+                </ul>
+
+                <h2>信息存储</h2>
+                <p>所有收集的数据均存储在您的本地设备上，我们不会将您的数据上传到任何服务器。这意味着：</p>
+                <ul>
+                    <li>您的数据完全由您控制</li>
+                    <li>您可以随时删除您的数据</li>
+                    <li>我们无法访问您的数据</li>
+                </ul>
+
+                <h2>第三方访问</h2>
+                <p>我们不会与任何第三方共享您的个人信息，除非：</p>
+                <ul>
+                    <li>您明确授权我们这样做</li>
+                    <li>法律要求我们这样做</li>
+                </ul>
+
+                <h2>安全措施</h2>
+                <p>我们采取以下措施保护您的数据安全：</p>
+                <ul>
+                    <li>所有数据仅存储在本地设备</li>
+                    <li>不进行任何网络传输</li>
+                    <li>定期更新应用程序以修复潜在的安全漏洞</li>
+                </ul>
+
+                <h2>您的权利</h2>
+                <p>作为用户，您有权：</p>
+                <ul>
+                    <li>随时停止使用我们的应用程序</li>
+                    <li>删除应用程序及其收集的所有数据</li>
+                    <li>导出您的数据用于个人备份</li>
+                </ul>
+
+                <h2>隐私政策更新</h2>
+                <p>我们可能会不时更新本隐私政策。当我们进行更改时，我们会在应用程序中通知您，并更新本页面上的"最后更新日期"。</p>
+
+                <h2>联系我们</h2>
+                <p>如果您对我们的隐私政策有任何疑问，请通过以下方式联系我们：</p>
+                <p>电子邮件：zhuolihaoc@gmail.com</p>
+            </div>
+        </div>
+
+        <div id="terms" class="tab-content">
+            <div class="card">
+                <h1>使用条款</h1>
+                <p>最后更新日期：2025年4月6日</p>
+
+                <p>欢迎使用 recounter。请仔细阅读以下条款和条件，它们规定了您使用我们应用程序的条件。</p>
+
+                <h2>接受条款</h2>
+                <p>通过下载、安装或使用 recounter，您表示您已阅读、理解并同意受这些条款的约束。如果您不同意这些条款，请不要使用我们的应用程序。</p>
+
+                <h2>许可授权</h2>
+                <p>recounter 授予您一个有限的、非排他性的、不可转让的许可，允许您在您拥有或控制的 macOS 设备上安装和使用应用程序，仅供个人、非商业用途。</p>
+
+                <h2>使用限制</h2>
+                <p>您同意不会：</p>
+                <ul>
+                    <li>出租、租赁、出借、销售、再分发或再许可应用程序</li>
+                    <li>复制、反编译、逆向工程、反汇编、尝试获取源代码、修改或创建应用程序的衍生作品</li>
+                    <li>移除、更改或遮盖应用程序中包含的任何版权、商标或其他专有权利声明</li>
+                    <li>使用应用程序进行任何非法或未经授权的目的</li>
+                </ul>
+
+                <h2>数据使用</h2>
+                <p>您理解并同意：</p>
+                <ul>
+                    <li>应用程序会记录您在计算机上输入的文本内容</li>
+                    <li>您应负责确保您不会无意中记录敏感信息（如密码、信用卡号码等）</li>
+                    <li>您应定期检查并删除不需要的记录</li>
+                </ul>
+
+                <h2>免责声明</h2>
+                <p>应用程序按"现状"和"可用"的基础提供，没有任何形式的保证。我们不保证应用程序将满足您的要求，或者应用程序的运行将不间断、及时、安全或无错误。</p>
+
+                <h2>责任限制</h2>
+                <p>在任何情况下，我们对因使用或无法使用应用程序而导致的任何直接、间接、附带、特殊、惩罚性或后果性损害（包括但不限于数据丢失、业务中断或任何其他商业损害或损失）不承担责任。</p>
+
+                <h2>终止</h2>
+                <p>如果您未能遵守这些条款，您使用应用程序的权利将自动终止，无需通知。终止后，您必须停止使用应用程序并删除所有副本。</p>
+
+                <h2>条款变更</h2>
+                <p>我们保留随时修改这些条款的权利。修改后的条款将在应用程序中发布，并在发布时立即生效。您继续使用应用程序将被视为接受修改后的条款。</p>
+
+                <h2>适用法律</h2>
+                <p>这些条款受中国法律管辖，并按其解释，不考虑法律冲突原则。</p>
+            </div>
+        </div>
+
+        <div id="contact" class="tab-content">
+            <div class="card">
+                <h1>联系我们</h1>
+                <p>我们很乐意听取您的反馈、建议或问题。请通过以下方式与我们联系：</p>
+
+                <h2>联系方式</h2>
+                <ul>
+                    <li><strong>电子邮件：</strong> zhuolihaoc@gmail.com</li>
+                    <li><strong>GitHub：</strong> <a href="https://github.com/zhuolhc/recounter" target="_blank">github.com/zhuolhc/recounter</a></li>
+                </ul>
+
+                <h2>反馈与支持</h2>
+                <p>如果您遇到任何问题或有改进建议，请填写以下表单：</p>
+
+                <!-- 在联系表单部分 -->
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="user_name" placeholder="您的姓名" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="email">电子邮件</label>
+                        <input type="email" id="email" name="user_email" placeholder="您的电子邮件地址" required>
+                    </div>
+                
+                    <div class="form-group full-width">
+                        <label for="subject">主题</label>
+                        <input type="text" id="subject" name="subject" placeholder="消息主题" required>
+                    </div>
+                
+                    <div class="form-group full-width">
+                        <label for="message">消息内容</label>
+                        <textarea id="message" name="message" placeholder="请详细描述您的问题或建议...同时把您的email再次输入在此内容框中" required></textarea>
+                    </div>
+                
+                    <div class="form-group full-width">
+                        <button type="submit" id="submit-btn">发送消息</button>
+                        <p id="form-status" style="display: none; margin-top: 10px;"></p>
+                    </div>
+                </form>
+
+                <h2>常见问题</h2>
+                <h3>Q: recounter 是否会将我的数据上传到云端？</h3>
+                <p>A: 不会。recounter 是一款纯本地应用，所有数据都存储在您的设备上，不会上传到任何服务器。</p>
+
+                <h3>Q: 如何备份我的记录数据？</h3>
+                <p>A: 您可以使用应用程序中的"导出所有记录"功能，将数据导出为文本文件进行备份。</p>
+
+                <h3>Q: recounter 会记录我的密码吗？</h3>
+                <p>A: recounter 不会记录您在计算机上输入的密文密码除非您输入密码时调成明文。</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">recounter</div>
+            <div class="footer-links">
+                <a href="#" onclick="openTab('privacy')">隐私政策</a>
+                <a href="#" onclick="openTab('terms')">使用条款</a>
+                <a href="#" onclick="openTab('contact')">联系我们</a>
+            </div>
+            <div class="copyright">© 2025 Zhuo. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        function openTab(tabName) {
+            // 隐藏所有标签内容
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // 移除所有标签的活动状态
+            var tabs = document.getElementsByClassName("nav-tab");
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+
+            // 显示选中的标签内容
+            document.getElementById(tabName).classList.add("active");
+
+            // 设置选中标签的活动状态
+            var activeTab = document.querySelector(`.nav-tab[onclick="openTab('${tabName}')"]`);
+            activeTab.classList.add("active");
+
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+
+        // 处理表单提交
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 显示发送中状态
+            const submitBtn = document.getElementById('submit-btn');
+            const formStatus = document.getElementById('form-status');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = '发送中...';
+            formStatus.style.display = 'block';
+            formStatus.textContent = '正在发送您的消息...';
+            formStatus.style.color = '#3498db';
+            
+            // 获取表单数据
+            const userName = document.getElementById('name').value;
+            const userEmail = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // 准备发送的模板参数
+            const templateParams = {
+                from_name: userName,
+                from_email: userEmail,
+                subject: subject,
+                message: message
+            };
+            
+            // 使用 EmailJS 发送邮件
+            emailjs.send('service_ntsy7e6', 'template_r7xexzv', templateParams, 'czkuhOtX6Yfx4uO79')
+                .then(function() {
+                    // 发送成功
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '发送消息';
+                    formStatus.textContent = '感谢您的反馈！我们会尽快回复您。';
+                    formStatus.style.color = 'green';
+                    document.getElementById('contact-form').reset();
+                    
+                    // 3秒后隐藏状态消息
+                    setTimeout(function() {
+                        formStatus.style.display = 'none';
+                    }, 3000);
+                }, function(error) {
+                    // 发送失败
+                    console.error('发送失败:', error);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '发送消息';
+                    formStatus.textContent = '发送失败，请稍后再试或直接发送邮件至 zhuolihaoc@gmail.com';
+                    formStatus.style.color = 'red';
+                });
+        });
+    </script>
+</body>
+</html>
