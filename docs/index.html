@@ -270,6 +270,53 @@
             opacity: 0.8;
         }
 
+        /* 新增样式：数据可视化图表展示区域 */
+        .stats-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stats-card {
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stats-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .stats-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-desc {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background-color: #6c5ce7;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
         @media (max-width: 768px) {
             .nav-tabs {
                 flex-direction: column;
@@ -300,6 +347,10 @@
             .form-group.full-width {
                 grid-column: span 1;
             }
+
+            .stats-preview {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -308,7 +359,7 @@
         <div class="header-content">
             <div class="logo-icon">⌨️</div>
             <div class="logo">recounter</div>
-            <div class="tagline">简单高效的打字记录工具</div>
+            <div class="tagline">简单高效的打字记录与数据分析工具</div>
         </div>
     </header>
 
@@ -323,10 +374,10 @@
         <div id="intro" class="tab-content active">
             <div class="card">
                 <h1>欢迎使用 recounter</h1>
-                <p>recounter 是一款专为 macOS 设计的打字记录工具，它能够帮助您追踪和记录日常打字内容，提高工作效率，避免内容丢失。</p>
+                <p>recounter 是一款专为 macOS 设计的打字记录工具，它能够帮助您追踪和记录日常打字内容，提高工作效率，避免内容丢失。通过内置的AI分析引擎，它还能为您提供深入的打字习惯分析和个性化建议。</p>
 
                 <h2>主要功能</h2>
-
+		<img src="https://github.com/zhuolhc/recounter/blob/main/%E6%88%AA%E5%B1%8F2025-04-07%2021.32.03.png?raw=true" width="800" alt="recounter">
                 <div class="feature">
                     <div class="feature-icon">📝</div>
                     <div class="feature-content">
@@ -344,6 +395,30 @@
                 </div>
 
                 <div class="feature">
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-content">
+                        <div class="feature-title">AI打字习惯分析<span class="ai-badge">NEW</span></div>
+                        <p>基于本地DeepSeek-R1 1.5B模型，分析您的打字习惯、速度和效率，完全在本地设备上进行，保护隐私。</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-content">
+                        <div class="feature-title">数据可视化仪表盘<span class="ai-badge">NEW</span></div>
+                        <p>通过直观的图表和报告，了解您的打字模式、高效时段和潜在的效率提升空间。</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">💡</div>
+                    <div class="feature-content">
+                        <div class="feature-title">智能建议<span class="ai-badge">NEW</span></div>
+                        <p>获取个性化的效率提升建议，包括常用短语自动补全、打字姿势调整和最佳工作环境推荐。</p>
+                    </div>
+                </div>
+
+                <div class="feature">
                     <div class="feature-icon">🎨</div>
                     <div class="feature-content">
                         <div class="feature-title">主题定制</div>
@@ -352,7 +427,7 @@
                 </div>
 
                 <div class="feature">
-                    <div class="feature-icon">📊</div>
+                    <div class="feature-icon">📤</div>
                     <div class="feature-content">
                         <div class="feature-title">数据导出</div>
                         <p>支持导出记录数据，方便备份和分析。</p>
@@ -363,9 +438,53 @@
                     <div class="feature-icon">🔒</div>
                     <div class="feature-content">
                         <div class="feature-title">安全可靠</div>
-                        <p>所有数据存储在本地，保护您的隐私安全。</p>
+                        <p>所有数据存储在本地，AI分析也在设备上完成，保护您的隐私安全。</p>
                     </div>
                 </div>
+
+                <h2>AI驱动的打字分析<span class="ai-badge">NEW</span></h2>
+
+                <p>借助内置的DeepSeek-R1 1.5B模型，recounter现在能够提供前所未有的打字习惯洞察：</p>
+		<img src="https://github.com/zhuolhc/recounter/blob/main/%E6%88%AA%E5%B1%8F2025-04-08%2022.03.56.png?raw=true" width="800" alt="recounter">
+                <div class="stats-preview">
+                    <div class="stats-card">
+                        <div class="stats-icon">⚡</div>
+                        <div class="stats-title">打字速度分析</div>
+                        <div class="stats-desc">追踪您在不同应用、不同时段的打字速度，发现效率高峰期。</div>
+                    </div>
+
+                    <div class="stats-card">
+                        <div class="stats-icon">🔄</div>
+                        <div class="stats-title">错误模式识别</div>
+                        <div class="stats-desc">检测常见的打字错误和修改模式，帮助提高准确度。</div>
+                    </div>
+
+                    <div class="stats-card">
+                        <div class="stats-icon">📝</div>
+                        <div class="stats-title">写作风格分析</div>
+                        <div class="stats-desc">了解您的写作风格、句式结构和词汇多样性。</div>
+                    </div>
+
+                    <div class="stats-card">
+                        <div class="stats-icon">⏱️</div>
+                        <div class="stats-title">生产力时段</div>
+                        <div class="stats-desc">识别您一天中打字效率最高的时段，优化工作安排。</div>
+                    </div>
+                </div>
+
+                <h2>数据可视化<span class="ai-badge">NEW</span></h2>
+		<img src="https://github.com/zhuolhc/recounter/blob/main/%E6%88%AA%E5%B1%8F2025-04-08%2022.04.10.png?raw=true" width="800" alt="recounter">
+                <p>recounter提供丰富的数据可视化功能，帮助您直观地了解自己的打字习惯：</p>
+                <ul>
+                    <li><strong>热力图</strong>：显示不同时段的打字活跃度</li>
+                    <li><strong>趋势图</strong>：追踪打字速度和准确率的变化趋势</li>
+                    <li><strong>应用分布图</strong>：了解您在不同应用中花费的打字时间</li>
+                    <li><strong>键盘热区</strong>：识别您使用最频繁的按键和组合</li>
+                    <li><strong>词汇云</strong>：展示您最常用的词汇和短语</li>
+                </ul>
+
+                <h2>隐私保障</h2>
+                <p>我们非常重视您的隐私安全。所有AI分析都在本地设备上进行，利用内置的DeepSeek-R1 1.5B模型，无需将您的数据上传到云端。您可以完全控制数据的收集和分析范围，随时关闭或删除不需要的记录。</p>
             </div>
         </div>
 
@@ -382,14 +501,25 @@
                     <li>您在各个应用程序中输入的文本内容</li>
                     <li>应用程序名称</li>
                     <li>输入时间戳</li>
+                    <li>打字速度和模式（用于AI分析）</li>
                 </ul>
 
                 <h2>信息使用</h2>
                 <p>我们收集的信息仅用于：</p>
                 <ul>
                     <li>提供打字记录功能</li>
+                    <li>在本地设备上进行打字习惯分析</li>
+                    <li>生成个性化效率建议</li>
                     <li>改进产品体验</li>
                     <li>根据您的要求提供技术支持</li>
+                </ul>
+
+                <h2>AI分析与隐私</h2>
+                <p>recounter 使用内置的DeepSeek-R1 1.5B模型在您的本地设备上进行所有AI分析。这意味着：</p>
+                <ul>
+                    <li>您的数据不会被发送到任何服务器进行处理</li>
+                    <li>分析结果仅存储在您的设备上</li>
+                    <li>您可以随时删除所有分析数据</li>
                 </ul>
 
                 <h2>信息存储</h2>
@@ -412,6 +542,7 @@
                 <ul>
                     <li>所有数据仅存储在本地设备</li>
                     <li>不进行任何网络传输</li>
+                    <li>AI模型完全在本地运行</li>
                     <li>定期更新应用程序以修复潜在的安全漏洞</li>
                 </ul>
 
@@ -421,6 +552,7 @@
                     <li>随时停止使用我们的应用程序</li>
                     <li>删除应用程序及其收集的所有数据</li>
                     <li>导出您的数据用于个人备份</li>
+                    <li>关闭AI分析功能</li>
                 </ul>
 
                 <h2>隐私政策更新</h2>
@@ -452,14 +584,24 @@
                     <li>复制、反编译、逆向工程、反汇编、尝试获取源代码、修改或创建应用程序的衍生作品</li>
                     <li>移除、更改或遮盖应用程序中包含的任何版权、商标或其他专有权利声明</li>
                     <li>使用应用程序进行任何非法或未经授权的目的</li>
+                    <li>尝试提取或复制内置的AI模型</li>
                 </ul>
 
                 <h2>数据使用</h2>
                 <p>您理解并同意：</p>
                 <ul>
                     <li>应用程序会记录您在计算机上输入的文本内容</li>
+                    <li>应用程序会使用本地AI模型分析您的打字习惯</li>
                     <li>您应负责确保您不会无意中记录敏感信息（如密码、信用卡号码等）</li>
                     <li>您应定期检查并删除不需要的记录</li>
+                </ul>
+
+                <h2>AI功能</h2>
+                <p>关于应用程序的AI功能，您理解并同意：</p>
+                <ul>
+                    <li>AI分析基于本地DeepSeek-R1 1.5B模型，所有处理都在您的设备上进行</li>
+                    <li>AI功能仅用于分析您的打字习惯并提供建议</li>
+                    <li>AI分析结果可能不总是100%准确，应作为参考而非绝对依据</li>
                 </ul>
 
                 <h2>免责声明</h2>
@@ -523,13 +665,20 @@
 
                 <h2>常见问题</h2>
                 <h3>Q: recounter 是否会将我的数据上传到云端？</h3>
-                <p>A: 不会。recounter 是一款纯本地应用，所有数据都存储在您的设备上，不会上传到任何服务器。</p>
+                <p>A: 不会。recounter 是一款纯本地应用，所有数据都存储在您的设备上，不会上传到任何服务器。这包括AI分析所需的数据，所有处理都在本地进行。</p>
+
+                <h3>Q: AI分析功能会消耗大量系统资源吗？</h3>
+                <p>A: 我们使用的DeepSeek-R1 1.5B是一个轻量级模型，经过优化可在普通Mac设备上高效运行，不会明显影响系统性能。</p>
 
                 <h3>Q: 如何备份我的记录数据？</h3>
-                <p>A: 您可以使用应用程序中的"导出所有记录"功能，将数据导出为文本文件进行备份。</p>
+                <p>A: 您可以使用应用程序中的"导出所有记录"功能，将数据导出为文本文件进行备份。分析数据也可以作为报告导出。</p>
 
                 <h3>Q: recounter 会记录我的密码吗？</h3>
                 <p>A: recounter 不会记录您在计算机上输入的密文密码除非您输入密码时调成明文。</p>
+
+                <h3>Q: 如何关闭AI分析功能？</h3>
+                <p>A: 您可以在应用程序的"设置"中轻松关闭AI分析功能。关闭后，应用程序将只记录打字内容，不会进行任何分析。</p>
+
             </div>
         </div>
     </div>
