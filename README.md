@@ -20,7 +20,8 @@
 ✅ 推出Windows等版本
 <br> 
 ✅ 源码将在最终完成并完全测试后开源
-
+<br>
+✅ 推出更多AI prompt
 ### Question
 <br>
 
