@@ -1,5 +1,6 @@
 # recounter
 **在Mac上记录您在任何应用打下的字与您剪切板的内容并在本地通过ollama DeepSeek-r1分析。**
+<br>
 ## 以下内容正在持续微调prompt，目标让DeepSeek有更多发挥空间，已经上线
 **利用本地deepseek-r1 1.5B 完成数据分析，极致轻量化并保障您的数据安全**
 <br><br>
@@ -19,6 +20,9 @@
 <img src="https://i.postimg.cc/L47H9Jdv/2025-04-11-19-05-03.png" width = "400" alt="recounter">
 <img src="https://i.postimg.cc/FRPX0N4p/2025-04-11-14-22-54.png" width = "400" alt="recounter">
 <img src="https://i.postimg.cc/VsVc6f4L/2025-04-11-14-23-14.png" width = "400" alt="recounter">
+## deploy
+https://github.com/zhuolhc/recounter/releases
+<br>
 ## todo
 ✅ 优化内存逻辑
 <br>
