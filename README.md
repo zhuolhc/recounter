@@ -4,7 +4,7 @@
 **利用本地deepseek-r1 1.5B 完成数据分析，极致轻量化并保障您的数据安全**
 <br><br>
 *<a href = "https://ollama.com/download" target = "blank"> ollama下载地址</a>*
-<br>
+<br><br>
 <img src="https://i.postimg.cc/VNrCxL7r/2025-04-11-14-19-05.png" width = "400" alt="recounter">
 <img src="https://i.postimg.cc/HkPMv7t1/2025-04-11-14-18-57.png" width = "400" alt="recounter">
 <img src="https://i.postimg.cc/k53J5JJt/2025-04-11-14-19-18.png" width = "400" alt="recounter">
