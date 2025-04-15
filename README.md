@@ -2,7 +2,7 @@
 **在Mac上记录您在任何应用打下的字与您剪切板的内容并在本地通过ollama DeepSeek-r1分析。**
 ## 以下内容正在持续微调prompt，目标让DeepSeek有更多发挥空间，已经上线
 **利用本地deepseek-r1 1.5B 完成数据分析，极致轻量化并保障您的数据安全**
-<br>
+<br><br>
 *<a href = "https://ollama.com/download" target = "blank"> ollama下载地址</a>*
 <br>
 <img src="https://i.postimg.cc/VNrCxL7r/2025-04-11-14-19-05.png" width = "400" alt="recounter">
