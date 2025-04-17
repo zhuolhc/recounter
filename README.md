@@ -45,4 +45,5 @@ https://github.com/zhuolhc/recounter/releases
 **Q4:是否安全？A：当然，此app不会上传任何用户信息，AI也是通过ollama调用本地的资源，全app仅检查更新有网络接口**
 <br>
 **Q5:我直接网上GPT、CLAUDE、DEEPSEEK不比你这个分析更强? A：是的，但是本地有一个网上永远不可能完全达到的优势：安全！**
+<br>
 **Q6:具体哪些会记录哪些不会记录？A：会：明文复制、任意app打字、在同一网络环境、iCloud账户的iPhone复制。不会：密文复制**
