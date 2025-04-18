@@ -47,3 +47,4 @@ https://github.com/zhuolhc/recounter/releases
 **Q5:我直接网上GPT、CLAUDE、DEEPSEEK非蒸馏分析不比它更强? A：是的，但是本地有一个网上永远不可能完全达到的优势：安全！**
 <br>
 **Q6:具体哪些会记录哪些不会记录？A：会：明文复制、任意app打字、在同一网络环境、iCloud账户的iPhone复制。不会：密文复制、在本app下打的字**
+**欢迎提交issues🥰**
