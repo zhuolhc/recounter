@@ -48,4 +48,4 @@ https://github.com/zhuolhc/recounter/releases
 <br>
 **Q6:具体哪些会记录哪些不会记录？A：会：明文复制、任意app打字、在同一网络环境、iCloud账户的iPhone复制。不会：密文复制、在本app下打的字**
 <br>
-**本app基于MIT协议，欢迎提交issues🥰**
+**本app基于<a href="https://github.com/zhuolhc/recounter?tab=MIT-1-ov-file">MIT协议</a>，欢迎提交issues🥰**
